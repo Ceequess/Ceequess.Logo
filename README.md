@@ -2,4 +2,4 @@
 
 Hosts the `Ceequess` logo.
 
-See [Ceequess](https://www.github.com/Ceequess/Ceequess) for more information.
+See [Ceequess](https://www.github.com/Ceequess) for more information.
