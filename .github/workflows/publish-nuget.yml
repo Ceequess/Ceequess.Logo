@@ -1,0 +1,45 @@
+name: Publish to NuGet
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-nuget:
+    name: Publish to NuGet
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.2.0
+        with:
+          nuget-version: 6.x
+
+      - name: Setup GitVersion
+        uses: gittools/actions/gitversion/setup@v0.11.0
+        with:
+          versionSpec: 5.x
+
+      - name: Execute GitVersion
+        id: gitVersion
+        uses: gittools/actions/gitversion/execute@v0.11.0
+
+      - name: Create NuGet Package
+        shell: bash
+        run: nuget pack nuget/Ceequess.Logo.nuspec -Version "${{ steps.gitVersion.outputs.SemVer }}" -OutputFileNamesWithoutVersion
+
+      - name: Publish NuGet Packages
+        shell: bash
+        run: |
+          dotnet nuget push Ceequess.Logo.nupkg -s https://api.nuget.org/v3/index.json -k "${{ secrets.NUGET_API_KEY }}"
