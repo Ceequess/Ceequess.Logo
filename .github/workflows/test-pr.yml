@@ -10,7 +10,7 @@ jobs:
 
   test-pr:
     name: Test PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
 
@@ -19,20 +19,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Mono
+        shell: bash
+        run: sudo apt install mono-devel
+
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.2.0
         with:
           nuget-version: 6.x
-
-      - name: Setup GitVersion
-        uses: gittools/actions/gitversion/setup@v0.11.0
-        with:
-          versionSpec: 5.x
-  
-      - name: Execute GitVersion
-        id: gitVersion
-        uses: gittools/actions/gitversion/execute@v0.11.0
   
       - name: Verify can create NuGet Package
         shell: bash
-        run: nuget pack nuget/Ceequess.Logo.nuspec -Version "${{ steps.gitVersion.outputs.SemVer }}"
+        run: nuget pack ./nuget/Ceequess.Logo.nuspec
