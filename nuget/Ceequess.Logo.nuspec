@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Ceequess.Logo</id>
+
+    <title>Ceequess.Logo</title>
+    <description>Hosts the Ceequess logo.</description>
+    <authors>ErikWe</authors>
+    <icon>logo.png</icon>
+    <readme>README.nupkg.md</readme>
+    
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    
+    <projectUrl>https://github.com/Ceequess</projectUrl>
+    <repository type="git" url="https://github.com/Ceequess/Ceequess.Logo" />
+
+    <contentFiles>
+      <files include="logo.png" buildAction="Content" /> 
+      <files include="README.nupkg.md" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+</package>
