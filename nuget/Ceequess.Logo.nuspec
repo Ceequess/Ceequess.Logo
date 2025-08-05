@@ -6,6 +6,7 @@
 
     <title>Ceequess.Logo</title>
     <description>Hosts the Ceequess logo.</description>
+    <version>0.1.0</version>
     <authors>ErikWe</authors>
     <icon>logo.png</icon>
     <readme>README.nupkg.md</readme>
